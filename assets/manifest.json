@@ -1,0 +1,566 @@
+{
+  "assets/dp/01.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/02.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/03.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/04.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/05.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/06.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/07.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/08.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/09.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/10.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/11.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/12.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/13.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/14.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/15.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/16.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/17.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/18.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/19.webp": {
+    "width": 960,
+    "height": 1200
+  },
+  "assets/dp/cover-01.webp": {
+    "width": 640,
+    "height": 800
+  },
+  "assets/dp/cover-04.webp": {
+    "width": 640,
+    "height": 800
+  },
+  "assets/dp/cover-08.webp": {
+    "width": 640,
+    "height": 800
+  },
+  "assets/ernest/ej-banner-1.webp": {
+    "width": 1672,
+    "height": 941
+  },
+  "assets/ernest/ej-banner-2.webp": {
+    "width": 1672,
+    "height": 941
+  },
+  "assets/ernest/ej-title.webp": {
+    "width": 2172,
+    "height": 724
+  },
+  "assets/igd/banner-1.webp": {
+    "width": 1200,
+    "height": 675
+  },
+  "assets/igd/banner-2.webp": {
+    "width": 1200,
+    "height": 675
+  },
+  "assets/igd/cover.webp": {
+    "width": 1200,
+    "height": 675
+  },
+  "assets/igd/post-1.webp": {
+    "width": 944,
+    "height": 944
+  },
+  "assets/igd/post-2.webp": {
+    "width": 944,
+    "height": 944
+  },
+  "assets/igd/post-3.webp": {
+    "width": 614,
+    "height": 614
+  },
+  "assets/igd/post-4.webp": {
+    "width": 614,
+    "height": 614
+  },
+  "assets/igd/post-5.webp": {
+    "width": 614,
+    "height": 614
+  },
+  "assets/igd/post-6.webp": {
+    "width": 944,
+    "height": 944
+  },
+  "assets/igd/post-7.webp": {
+    "width": 944,
+    "height": 944
+  },
+  "assets/igd-feed.webp": {
+    "width": 1200,
+    "height": 1188
+  },
+  "assets/logo.png": {
+    "width": 1948,
+    "height": 954
+  },
+  "assets/marshall/ms-01.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/marshall/ms-03.webp": {
+    "width": 1800,
+    "height": 771
+  },
+  "assets/marshall/ms-04.webp": {
+    "width": 1800,
+    "height": 771
+  },
+  "assets/marshall/ms-05.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/marshall/ms-06.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/marshall/ms-07.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/marshall/ms-08.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/marshall/ms-09.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/marshall/ms-10.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/marshall/ms-11.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/marshall/ms-12.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/marshall/ms-13.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/marshall/ms-14.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/marshall/ms-15.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/marshall/ms-16.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/marshall/ms-17.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/marshall/ms-18.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/marshall/ms-19.webp": {
+    "width": 1200,
+    "height": 1080
+  },
+  "assets/portrait.webp": {
+    "width": 760,
+    "height": 760
+  },
+  "assets/pringles/cover-01.webp": {
+    "width": 640,
+    "height": 800
+  },
+  "assets/pringles/cover-11.webp": {
+    "width": 640,
+    "height": 800
+  },
+  "assets/pringles/cover-45.webp": {
+    "width": 800,
+    "height": 800
+  },
+  "assets/pringles/cover-51.webp": {
+    "width": 800,
+    "height": 800
+  },
+  "assets/pringles/pr-01.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-02.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-03.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-04.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-05.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-06.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-07.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-08.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-09.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-10.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-11.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-12.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-13.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-14.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-15.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-16.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-17.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-18.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-19.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-20.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-21.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-22.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-23.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-24.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-25.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-26.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-27.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-28.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-29.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-30.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-31.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-32.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-33.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-34.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-35.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-36.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-37.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-38.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-39.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-40.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-41.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-42.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-43.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-44.webp": {
+    "width": 563,
+    "height": 1000
+  },
+  "assets/pringles/pr-45.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-46.webp": {
+    "width": 800,
+    "height": 1000
+  },
+  "assets/pringles/pr-47.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-48.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-49.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-50.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-51.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-52.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-53.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-54.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-55.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-56.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-57.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/pringles/pr-58.webp": {
+    "width": 1000,
+    "height": 1000
+  },
+  "assets/sapphire/sp-bag.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/sapphire/sp-barista.webp": {
+    "width": 1023,
+    "height": 1537
+  },
+  "assets/sapphire/sp-cups-float.webp": {
+    "width": 1402,
+    "height": 1122
+  },
+  "assets/sapphire/sp-cups-hands.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/sapphire/sp-hero.webp": {
+    "width": 1672,
+    "height": 941
+  },
+  "assets/sapphire/sp-lifestyle.webp": {
+    "width": 1402,
+    "height": 1122
+  },
+  "assets/sapphire/sp-logo-construction.webp": {
+    "width": 1254,
+    "height": 1254
+  },
+  "assets/sapphire/sp-merch.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/sapphire/sp-palette-type.webp": {
+    "width": 1254,
+    "height": 1254
+  },
+  "assets/sapphire/sp-storefront.webp": {
+    "width": 1536,
+    "height": 1024
+  },
+  "assets/woop/wp-a.webp": {
+    "width": 1672,
+    "height": 941
+  },
+  "assets/woop/wp-b.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/woop/wp-c.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/woop/wp-d.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/woop/wp-e.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/woop/wp-f.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/woop/wp-g.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/woop/wp-h.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/woop/wp-i.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/woop/wp-j.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/woop/wp-k.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/favicon.png": {
+    "width": 32,
+    "height": 32
+  },
+  "assets/apple-touch-icon.png": {
+    "width": 180,
+    "height": 180
+  }
+}
