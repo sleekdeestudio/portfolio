@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sleekdeestudio.github.io/portfolio/sitemap.xml
+Sitemap: https://tirthmody.space/sitemap.xml

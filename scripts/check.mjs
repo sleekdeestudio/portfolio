@@ -71,11 +71,16 @@ const expectedPages = [
   "work/marshall/index.html",
   "work/ernest-jones/index.html",
   "work/sapphire/index.html",
+  "work/prakriti-spice/index.html",
   "404.html"
 ];
 
 for (const expected of expectedPages) {
   if (!files.some((file) => path.relative(root, file) === expected)) failures.push(`Missing page: ${expected}`);
+}
+
+for (const required of ["CNAME", "site.webmanifest", ".nojekyll"]) {
+  if (!files.some((file) => path.relative(root, file) === required)) failures.push(`Missing required deployment file: ${required}`);
 }
 
 if (failures.length) {

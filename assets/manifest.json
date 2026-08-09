@@ -95,6 +95,46 @@
     "width": 1672,
     "height": 941
   },
+  "assets/ernest/ej-d10.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/ernest/ej-d11.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/ernest/ej-d12.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/ernest/ej-d13.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/ernest/ej-d14.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/ernest/ej-d15.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/ernest/ej-d16.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/ernest/ej-d17.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/ernest/ej-d18.webp": {
+    "width": 1086,
+    "height": 1448
+  },
+  "assets/ernest/ej-d9.webp": {
+    "width": 1086,
+    "height": 1448
+  },
   "assets/ernest/ej-title.webp": {
     "width": 2172,
     "height": 724
@@ -219,9 +259,37 @@
     "width": 1200,
     "height": 1080
   },
+  "assets/portrait-hc.webp": {
+    "width": 760,
+    "height": 760
+  },
   "assets/portrait.webp": {
     "width": 760,
     "height": 760
+  },
+  "assets/prakriti/pk-guide.webp": {
+    "width": 2400,
+    "height": 1328
+  },
+  "assets/prakriti/pk-hero.webp": {
+    "width": 1916,
+    "height": 821
+  },
+  "assets/prakriti/pk-intro.webp": {
+    "width": 1545,
+    "height": 2400
+  },
+  "assets/prakriti/pk-moodboard.webp": {
+    "width": 1800,
+    "height": 2400
+  },
+  "assets/prakriti/pk-range.webp": {
+    "width": 1402,
+    "height": 1122
+  },
+  "assets/prakriti/pk-statement.webp": {
+    "width": 2400,
+    "height": 817
   },
   "assets/pringles/cover-01.webp": {
     "width": 640,
@@ -554,6 +622,14 @@
   "assets/woop/wp-k.webp": {
     "width": 1086,
     "height": 1448
+  },
+  "assets/woop/wp-n1.webp": {
+    "width": 1122,
+    "height": 1402
+  },
+  "assets/woop/wp-n2.webp": {
+    "width": 1123,
+    "height": 1401
   },
   "assets/favicon.png": {
     "width": 32,
