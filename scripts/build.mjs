@@ -137,7 +137,7 @@ function homePage() {
   const marquee = `<div class="marquee-track">${[...clients, ...clients].map((client) => `<span>${client}</span><i aria-hidden="true"></i>`).join("")}</div>`;
   const main = `
 <section class="hero deep" aria-labelledby="hero-title"><div class="content hero-content">
-  <p class="eyebrow">SleekDee</p>
+  <p class="eyebrow">SleekDee / designer</p>
   <h1 id="hero-title" aria-label="I build brands that look sharp and grow online."><span data-hero-line="I build brands">I build brands</span><span data-hero-line="that look sharp" data-hero-accent="sharp">that look <em>sharp</em></span><span data-hero-line="and grow online.">and grow online.</span></h1>
   <p class="hero-copy" data-blurline>I'm Tirth Mody, the designer and cinematographer behind SleekDee. Identities, feeds, packaging and photographs that pull their weight: work that looks good and sells harder.</p>
   <div class="hero-tags"><span>designer</span><span>cinematographer</span></div>
