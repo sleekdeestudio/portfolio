@@ -140,6 +140,145 @@
     videos.forEach((video) => videoObserver.observe(video));
   }
 
+  const reelStage = document.querySelector("[data-reelstage]");
+  if (reelStage) {
+    const reelCards = [...reelStage.querySelectorAll("[data-reel]")];
+    const reelDots = [...document.querySelectorAll("[data-reeldot]")];
+    const previousButton = document.querySelector("[data-reelprev]");
+    const nextButton = document.querySelector("[data-reelnext]");
+    let reelIndex = 0;
+    let reelVisible = false;
+    let reelHovered = false;
+    let reelDragging = false;
+    let dragStart = 0;
+    let dragDelta = 0;
+    let lastAdvance = performance.now();
+    const limit = (value, minimum, maximum) => Math.max(minimum, Math.min(maximum, value));
+
+    const reelOffset = (index) => {
+      const count = reelCards.length;
+      let offset = index - reelIndex;
+      if (offset > count / 2) offset -= count;
+      if (offset < -count / 2) offset += count;
+      return offset;
+    };
+
+    const updateReelVideos = () => {
+      reelCards.forEach((card, index) => {
+        const video = card.querySelector("video");
+        const sound = card.querySelector("[data-reelsnd]");
+        const near = Math.abs(reelOffset(index)) <= 1;
+        if (near && reelVisible && !reduceMotion.matches && !navigator.connection?.saveData) video.play().catch(() => {});
+        else video.pause();
+        if (index !== reelIndex) video.muted = true;
+        if (sound) sound.tabIndex = index === reelIndex ? 0 : -1;
+      });
+    };
+
+    const layoutReels = () => {
+      const cardWidth = reelCards[0]?.getBoundingClientRect().width || 260;
+      const step = cardWidth * .94;
+      reelCards.forEach((card, index) => {
+        const offset = reelOffset(index);
+        const distance = Math.abs(offset);
+        const x = -offset * step + (reelDragging ? dragDelta : 0);
+        card.style.transform = `translateX(calc(-50% + ${x}px)) translateY(${distance * 13}px) scale(${distance ? Math.max(.74, 1 - distance * .11) : 1}) rotate(${offset * 2.4}deg)`;
+        card.style.zIndex = String(50 - distance * 6);
+        card.style.opacity = distance > 1.5 ? "0" : "1";
+        card.style.filter = distance ? `brightness(${1 - .22 * distance}) saturate(${1 - .12 * distance})` : "none";
+        card.style.pointerEvents = distance > 1.5 ? "none" : "auto";
+        card.setAttribute("aria-hidden", distance > 1.5 ? "true" : "false");
+        card.toggleAttribute("data-active", index === reelIndex);
+      });
+      reelDots.forEach((dot, index) => {
+        if (index === reelIndex) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+      });
+      updateReelVideos();
+    };
+
+    const selectReel = (index) => {
+      reelIndex = (index + reelCards.length) % reelCards.length;
+      lastAdvance = performance.now();
+      layoutReels();
+    };
+
+    reelCards.forEach((card, index) => {
+      card.addEventListener("click", (event) => {
+        if (Math.abs(dragDelta) > 14 || event.target.closest("[data-reelsnd]")) return;
+        if (index !== reelIndex) selectReel(index);
+      });
+      const sound = card.querySelector("[data-reelsnd]");
+      sound?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (index !== reelIndex) selectReel(index);
+        const video = card.querySelector("video");
+        video.muted = !video.muted;
+        sound.setAttribute("aria-label", video.muted ? `Play ${card.getAttribute("aria-label")} with sound` : `Mute ${card.getAttribute("aria-label")}`);
+        sound.querySelector("[data-sndoff]").hidden = !video.muted;
+        sound.querySelector("[data-sndon]").hidden = video.muted;
+        video.play().catch(() => { video.muted = true; });
+      });
+    });
+    previousButton?.addEventListener("click", () => selectReel(reelIndex - 1));
+    nextButton?.addEventListener("click", () => selectReel(reelIndex + 1));
+    reelDots.forEach((dot, index) => dot.addEventListener("click", () => selectReel(index)));
+    reelStage.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        event.preventDefault();
+        selectReel(reelIndex + (event.key === "ArrowRight" ? 1 : -1));
+      }
+    });
+    reelStage.addEventListener("pointerdown", (event) => {
+      reelDragging = true;
+      dragStart = event.clientX;
+      dragDelta = 0;
+      reelStage.classList.add("is-dragging");
+      reelStage.setPointerCapture(event.pointerId);
+      reelCards.forEach((card) => { card.style.transition = "none"; });
+    });
+    reelStage.addEventListener("pointermove", (event) => {
+      if (!reelDragging) return;
+      dragDelta = limit(event.clientX - dragStart, -280, 280);
+      layoutReels();
+    });
+    const finishDrag = () => {
+      if (!reelDragging) return;
+      reelDragging = false;
+      reelStage.classList.remove("is-dragging");
+      reelCards.forEach((card) => { card.style.removeProperty("transition"); });
+      const direction = dragDelta < -46 ? 1 : dragDelta > 46 ? -1 : 0;
+      dragDelta = 0;
+      selectReel(reelIndex + direction);
+    };
+    reelStage.addEventListener("pointerup", finishDrag);
+    reelStage.addEventListener("pointercancel", finishDrag);
+    reelStage.addEventListener("mouseenter", () => { reelHovered = true; });
+    reelStage.addEventListener("mouseleave", () => { reelHovered = false; });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([entry]) => {
+        reelVisible = entry.isIntersecting && entry.intersectionRatio >= .18;
+        updateReelVideos();
+      }, { threshold: [.18, .45] }).observe(reelStage);
+    }
+    setInterval(() => {
+      if (!reelVisible || reelHovered || reelDragging || reduceMotion.matches) return;
+      if (performance.now() - lastAdvance >= 4600) selectReel(reelIndex + 1);
+    }, 180);
+    const updateProgress = () => {
+      reelCards.forEach((card) => {
+        const video = card.querySelector("video");
+        const bar = card.querySelector("[data-reelbar]");
+        bar.style.width = video.duration ? `${limit(video.currentTime / video.duration, 0, 1) * 100}%` : "0%";
+      });
+      requestAnimationFrame(updateProgress);
+    };
+    reduceMotion.addEventListener?.("change", updateReelVideos);
+    addEventListener("resize", layoutReels, { passive: true });
+    layoutReels();
+    updateProgress();
+  }
+
   const blurLines = [...document.querySelectorAll("[data-blurline]")];
   const stacks = [...document.querySelectorAll("[data-stack]")];
   const brightItems = [...document.querySelectorAll("[data-bright]")];

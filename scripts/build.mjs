@@ -62,7 +62,7 @@ function documentHead({ title, description, canonical, ogImage, level, type = "w
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500&amp;family=Space+Grotesk:wght@300;400;500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="${prefix}styles.css?v=20260810">
+  <link rel="stylesheet" href="${prefix}styles.css?v=20260812">
   ${schema}
 </head>`;
 }
@@ -108,7 +108,7 @@ function pageShell({ level, current, head, main }) {
   <main id="main">${main}</main>
   ${footer(level)}
   ${menuOverlay(level, current)}
-  <script src="${prefixFor(level)}site.js?v=20260809" defer></script>
+  <script src="${prefixFor(level)}site.js?v=20260812" defer></script>
 </body>
 </html>\n`;
 }
@@ -126,6 +126,27 @@ function workCard(item, level, location = "work") {
     <div class="card-copy"><span class="card-number">${item.number}</span><div><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(item.description)}</p></div><div class="card-tags">${item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div><span class="card-action">view project ${icons.arrow}</span></div>
   </a>
 </article>`;
+}
+
+const reelItems = [
+  { title: "Veluni Gelato", subtitle: "Cut on the beat", kind: "Reel", handle: "@velunigelato", description: "Three days of footage, one eighteen-second hook.", logo: "assets/dp-logos/veluni.png", alt: "Veluni Gelato logo", video: "media/reel-veluni.mp4", poster: "media/posters/reel-veluni.webp" },
+  { title: "Chai Therapy", subtitle: "Steep, pour, repeat", kind: "Reel", handle: "@chaitherapy", description: "The ritual shot slow, then cut fast.", logo: "assets/dp-logos/chai.png", alt: "Chai Therapy logo", video: "media/reel-chai-therapy.mp4", poster: "media/posters/reel-chai-therapy.webp" },
+  { title: "Soapbox Coffee", subtitle: "Pour with purpose", kind: "Ad", handle: "@soapboxcoffee", description: "Paid spot built to land with the sound off.", logo: "assets/dp-logos/soapbox.png", alt: "Soapbox Coffee logo", video: "media/reel-soapbox.mp4", poster: "media/posters/reel-soapbox.webp" },
+  { title: "The Grand Saffron", subtitle: "Table for two", kind: "Ad", handle: "@thegrandsaffron", description: "Product hero for the summer menu drop.", logo: "assets/dp-logos/grandsaffron.png", alt: "The Grand Saffron logo", video: "media/reel-grand-saffron.mp4", poster: "media/posters/reel-grand-saffron.webp" },
+  { title: "Sapphire", subtitle: "Joy in every cup", kind: "Reel", handle: "@sapphirecoffee", description: "Shot in one morning, cut for the feed.", logo: "assets/dp-logos/sapphire.png", alt: "Sapphire Coffee and Culture logo", video: "media/reel-sapphire.mp4", poster: "media/posters/reel-sapphire.webp" }
+];
+
+function reelCard(item, index) {
+  return `<article class="reel-card" data-reel aria-label="${escapeHtml(item.title)} video">
+  <video data-reelvid src="${item.video}" poster="${item.poster}" muted loop playsinline preload="none"></video>
+  <div class="reel-shade" aria-hidden="true"></div>
+  <div class="reel-overlay"><header><div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.subtitle)}</p></div><span>${item.kind}</span></header><footer><div class="reel-meta"><div class="reel-account"><img src="${item.logo}" alt="${escapeHtml(item.alt)}" width="256" height="256" loading="lazy" decoding="async"><span>${item.handle}</span></div><p>${escapeHtml(item.description)}</p><div class="reel-audio" aria-hidden="true"><span><i></i><i></i><i></i></span>Original audio — SleekDee</div></div><button class="reel-sound" type="button" data-reelsnd aria-label="Play ${escapeHtml(item.title)} with sound"><svg data-sndoff viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.5 9H3.5v6h3L11 19zM16.4 9.6 21 14.4M21 9.6l-4.6 4.8"/></svg><svg data-sndon viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M11 5 6.5 9H3.5v6h3L11 19zM15 9.2a4 4 0 0 1 0 5.6M17.8 6.6a7.6 7.6 0 0 1 0 10.8"/></svg></button></footer></div>
+  <div class="reel-progress" aria-hidden="true"><i data-reelbar></i></div>
+</article>`;
+}
+
+function reelsSection() {
+  return `<section class="reels deep" id="reels" aria-labelledby="reels-title"><div class="content"><div class="reels-heading"><div><p class="eyebrow">Short-form video</p><h2 id="reels-title">Made to stop the scroll.</h2></div><div class="reels-intro"><p>Vertical edits for Instagram and TikTok. Hook in the first second, story in the next fifteen, sound optional.</p><div class="reel-controls"><button type="button" data-reelprev aria-label="Previous reel">←</button><button type="button" data-reelnext aria-label="Next reel">→</button></div></div></div><div class="reel-stage" data-reelstage tabindex="0" aria-roledescription="carousel" aria-label="Short-form video projects">${reelItems.map(reelCard).join("")}</div><div class="reel-dots">${reelItems.map((item, index) => `<button type="button" data-reeldot aria-label="Show ${escapeHtml(item.title)} reel"${index === 0 ? ' aria-current="true"' : ""}></button>`).join("")}</div><p class="reel-note">Tap the speaker to play sound</p></div></section>`;
 }
 
 function homePage() {
@@ -146,6 +167,7 @@ function homePage() {
 <section class="client-strip deep" aria-label="Brands I have grown"><div class="content"><p>Brands I've grown</p></div><div class="marquee" aria-label="Marshall, Interior Goods Direct, Sapphire, Ernest Jones and Pringles">${marquee}</div></section>
 <section class="section cream" id="services" data-wipe><div class="content"><p class="eyebrow">What I do</p><div class="section-heading"><h2>Built for the moments people decide to care.</h2><p>One person across strategy, design, content and production — all kept in the same conversation from first thought to final frame.</p></div><div class="service-list">${services.map(([number, title, copy]) => `<article class="service-row" data-svc><span>${number}</span><div><h3>${title}</h3><p>${copy}</p></div><a href="#contact" aria-label="Discuss ${title}">→</a></article>`).join("")}</div></div></section>
 <section class="section work-section cream" id="work" data-wipe><div class="content"><div class="section-heading"><div><p class="eyebrow">Selected work</p><h2>Things I've made lately.</h2></div><p>Identity, campaign, content and photography — all from the same pair of hands.</p></div><div class="stack-deck">${workItems.map((item) => workCard(item, 0, "home")).join("")}</div><div class="section-action"><a class="button button-outline" href="work/">Show me more work ${icons.arrow}</a></div></div></section>
+${reelsSection()}
 <section class="section process cream" id="process" data-wipe><div class="content"><div class="section-heading"><div><p class="eyebrow">How we'll work</p><h2>Three steps, no mystery.</h2></div><p>Strategy, design, shoot and edit. One person across all three, so nothing gets lost in between.</p></div><div class="process-track"><div class="process-rail" data-rail></div>${steps.map(([number, title, copy, caption, video], index) => `<article class="process-step" data-step data-bright data-reveal data-delay="${index * 120}"><div class="process-copy"><p><span>step</span> ${number}</p><h3>${title}</h3><p>${copy}</p></div><figure><video src="${video}" muted loop playsinline preload="metadata" data-autoplay-video></video><figcaption><span>${caption}</span><span>${number} / 03</span></figcaption></figure></article>`).join("")}</div></div></section>
 <section class="section about deep" id="about"><div class="content about-layout"><figure class="portrait">${image("assets/portrait.webp", "Portrait of Tirth Mody", 0)}</figure><div><p class="eyebrow">The person behind it</p><h2>Hi, I'm Tirth.</h2><p data-words>SleekDee is the name I use for my work. I make brands and images that have something to say, then build the systems that keep them saying it.</p><p>Based in the UK, working with ambitious small businesses everywhere.</p><div class="profile-links">${external(site.socials.portfolio, "Portfolio", "button button-accent")}${external(site.socials.behance, "Bē Behance", "text-link")}${external(site.socials.linkedin, "LinkedIn", "text-link")}${external(site.socials.instagram, "Instagram", "text-link")}</div></div></div></section>
 <section class="section testimonials deep"><div class="content"><p class="eyebrow">Kind words</p><h2>What clients say after.</h2><div class="testimonial-grid"><figure data-reveal><blockquote>“Tirth took our feed from posting when we remember to a machine. Enquiries doubled in three months — and it still looks like us.”</blockquote><figcaption>Safir <span>Brand design & social media marketing</span></figcaption></figure><figure data-reveal data-delay="120"><blockquote>“The feed redesign paid for itself. One cohesive grid, and suddenly we look like the premium brand we always were.”</blockquote><figcaption>Interior Goods Direct <span>Feed redesign</span></figcaption></figure></div></div></section>
