@@ -62,7 +62,7 @@ function documentHead({ title, description, canonical, ogImage, level, type = "w
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500&amp;family=Space+Grotesk:wght@300;400;500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="${prefix}styles.css?v=20260812">
+  <link rel="stylesheet" href="${prefix}styles.css?v=20260812-3">
   ${schema}
 </head>`;
 }
@@ -108,7 +108,7 @@ function pageShell({ level, current, head, main }) {
   <main id="main">${main}</main>
   ${footer(level)}
   ${menuOverlay(level, current)}
-  <script src="${prefixFor(level)}site.js?v=20260812" defer></script>
+  <script src="${prefixFor(level)}site.js?v=20260812-3" defer></script>
 </body>
 </html>\n`;
 }
@@ -140,7 +140,7 @@ function reelCard(item, index) {
   return `<article class="reel-card" data-reel aria-label="${escapeHtml(item.title)} video">
   <video data-reelvid src="${item.video}" poster="${item.poster}" muted loop playsinline preload="none"></video>
   <div class="reel-shade" aria-hidden="true"></div>
-  <div class="reel-overlay"><header><div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.subtitle)}</p></div><span>${item.kind}</span></header><footer><div class="reel-meta"><div class="reel-account"><img src="${item.logo}" alt="${escapeHtml(item.alt)}" width="256" height="256" loading="lazy" decoding="async"><span>${item.handle}</span></div><p>${escapeHtml(item.description)}</p><div class="reel-audio" aria-hidden="true"><span><i></i><i></i><i></i></span>Original audio — SleekDee</div></div><button class="reel-sound" type="button" data-reelsnd aria-label="Play ${escapeHtml(item.title)} with sound"><svg data-sndoff viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.5 9H3.5v6h3L11 19zM16.4 9.6 21 14.4M21 9.6l-4.6 4.8"/></svg><svg data-sndon viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M11 5 6.5 9H3.5v6h3L11 19zM15 9.2a4 4 0 0 1 0 5.6M17.8 6.6a7.6 7.6 0 0 1 0 10.8"/></svg></button></footer></div>
+  <div class="reel-overlay"><header><div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.subtitle)}</p></div><span>${item.kind}</span></header><footer><div class="reel-meta"><div class="reel-account"><img src="${item.logo}" alt="${escapeHtml(item.alt)}" width="256" height="256" loading="lazy" decoding="async"><span>${item.handle}</span></div><p>${escapeHtml(item.description)}</p><div class="reel-audio" aria-hidden="true"><span><i></i><i></i><i></i></span>Original audio — SleekDee</div></div><button class="reel-sound" type="button" data-reelsnd aria-label="Play ${escapeHtml(item.title)} with sound"><svg viewBox="0 0 24 24" aria-hidden="true"><path data-sound-icon d="M11 5 6.5 9H3.5v6h3L11 19zM16.4 9.6 21 14.4M21 9.6l-4.6 4.8"/></svg></button></footer></div>
   <div class="reel-progress" aria-hidden="true"><i data-reelbar></i></div>
 </article>`;
 }

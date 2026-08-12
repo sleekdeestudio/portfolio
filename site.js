@@ -140,6 +140,7 @@
     videos.forEach((video) => videoObserver.observe(video));
   }
 
+  let syncReelVisibility = () => {};
   const reelStage = document.querySelector("[data-reelstage]");
   if (reelStage) {
     const reelCards = [...reelStage.querySelectorAll("[data-reel]")];
@@ -153,7 +154,11 @@
     let dragStart = 0;
     let dragDelta = 0;
     let lastAdvance = performance.now();
+    let soundWanted = true;
+    const previousOffsets = new WeakMap();
     const limit = (value, minimum, maximum) => Math.max(minimum, Math.min(maximum, value));
+    const mutedPath = "M11 5 6.5 9H3.5v6h3L11 19zM16.4 9.6 21 14.4M21 9.6l-4.6 4.8";
+    const audiblePath = "M11 5 6.5 9H3.5v6h3L11 19zM15 9.2a4 4 0 0 1 0 5.6M17.8 6.6a7.6 7.6 0 0 1 0 10.8";
 
     const reelOffset = (index) => {
       const count = reelCards.length;
@@ -163,16 +168,57 @@
       return offset;
     };
 
+    const syncSoundButton = (card, muted) => {
+      const button = card.querySelector("[data-reelsnd]");
+      const icon = button?.querySelector("[data-sound-icon]");
+      if (!button || !icon) return;
+      button.setAttribute("aria-label", muted ? `Play ${card.getAttribute("aria-label")} with sound` : `Mute ${card.getAttribute("aria-label")}`);
+      button.setAttribute("aria-pressed", muted ? "false" : "true");
+      icon.setAttribute("d", muted ? mutedPath : audiblePath);
+    };
+
     const updateReelVideos = () => {
       reelCards.forEach((card, index) => {
         const video = card.querySelector("video");
         const sound = card.querySelector("[data-reelsnd]");
+        const active = index === reelIndex;
         const near = Math.abs(reelOffset(index)) <= 1;
-        if (near && reelVisible && !reduceMotion.matches && !navigator.connection?.saveData) video.play().catch(() => {});
-        else video.pause();
-        if (index !== reelIndex) video.muted = true;
-        if (sound) sound.tabIndex = index === reelIndex ? 0 : -1;
+        const shouldPlay = near && reelVisible && !reduceMotion.matches && !navigator.connection?.saveData;
+        const shouldSound = active && reelVisible && soundWanted;
+        video.defaultMuted = !shouldSound;
+        video.muted = !shouldSound;
+        video.volume = 1;
+        if (shouldSound) video.removeAttribute("muted");
+        else video.setAttribute("muted", "");
+        if (shouldPlay) {
+          video.play().catch(() => {
+            video.defaultMuted = true;
+            video.muted = true;
+            video.setAttribute("muted", "");
+            syncSoundButton(card, true);
+            video.play().catch(() => {});
+          });
+        } else {
+          video.pause();
+          video.muted = true;
+        }
+        if (sound) sound.tabIndex = active ? 0 : -1;
+        syncSoundButton(card, video.muted);
       });
+    };
+
+    const setReelVisibility = (visibleNow) => {
+      if (visibleNow === reelVisible) return;
+      if (visibleNow) lastAdvance = performance.now();
+      reelVisible = visibleNow;
+      updateReelVideos();
+    };
+
+    syncReelVisibility = () => {
+      const rect = reelStage.getBoundingClientRect();
+      const visibleHeight = Math.max(0, Math.min(innerHeight, rect.bottom) - Math.max(0, rect.top));
+      const visibleNow = rect.height > 0 && visibleHeight / rect.height >= .18;
+      setReelVisibility(visibleNow);
     };
 
     const layoutReels = () => {
@@ -182,6 +228,9 @@
         const offset = reelOffset(index);
         const distance = Math.abs(offset);
         const x = -offset * step + (reelDragging ? dragDelta : 0);
+        const previousOffset = previousOffsets.get(card);
+        const wrapped = !reelDragging && previousOffset !== undefined && Math.abs(offset - previousOffset) > 1.5;
+        if (wrapped) card.style.transition = "none";
         card.style.transform = `translateX(calc(-50% + ${x}px)) translateY(${distance * 13}px) scale(${distance ? Math.max(.74, 1 - distance * .11) : 1}) rotate(${offset * 2.4}deg)`;
         card.style.zIndex = String(50 - distance * 6);
         card.style.opacity = distance > 1.5 ? "0" : "1";
@@ -189,6 +238,8 @@
         card.style.pointerEvents = distance > 1.5 ? "none" : "auto";
         card.setAttribute("aria-hidden", distance > 1.5 ? "true" : "false");
         card.toggleAttribute("data-active", index === reelIndex);
+        previousOffsets.set(card, offset);
+        if (wrapped) requestAnimationFrame(() => card.style.removeProperty("transition"));
       });
       reelDots.forEach((dot, index) => {
         if (index === reelIndex) dot.setAttribute("aria-current", "true");
@@ -213,11 +264,8 @@
         event.stopPropagation();
         if (index !== reelIndex) selectReel(index);
         const video = card.querySelector("video");
-        video.muted = !video.muted;
-        sound.setAttribute("aria-label", video.muted ? `Play ${card.getAttribute("aria-label")} with sound` : `Mute ${card.getAttribute("aria-label")}`);
-        sound.querySelector("[data-sndoff]").hidden = !video.muted;
-        sound.querySelector("[data-sndon]").hidden = video.muted;
-        video.play().catch(() => { video.muted = true; });
+        soundWanted = !(!video.muted && reelVisible);
+        updateReelVideos();
       });
     });
     previousButton?.addEventListener("click", () => selectReel(reelIndex - 1));
@@ -230,6 +278,7 @@
       }
     });
     reelStage.addEventListener("pointerdown", (event) => {
+      if (event.target instanceof Element && event.target.closest("button")) return;
       reelDragging = true;
       dragStart = event.clientX;
       dragDelta = 0;
@@ -247,7 +296,7 @@
       reelDragging = false;
       reelStage.classList.remove("is-dragging");
       reelCards.forEach((card) => { card.style.removeProperty("transition"); });
-      const direction = dragDelta < -46 ? 1 : dragDelta > 46 ? -1 : 0;
+      const direction = dragDelta > 46 ? 1 : dragDelta < -46 ? -1 : 0;
       dragDelta = 0;
       selectReel(reelIndex + direction);
     };
@@ -257,8 +306,7 @@
     reelStage.addEventListener("mouseleave", () => { reelHovered = false; });
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(([entry]) => {
-        reelVisible = entry.isIntersecting && entry.intersectionRatio >= .18;
-        updateReelVideos();
+        setReelVisibility(entry.isIntersecting && entry.intersectionRatio >= .18);
       }, { threshold: [.18, .45] }).observe(reelStage);
     }
     setInterval(() => {
@@ -274,8 +322,15 @@
       requestAnimationFrame(updateProgress);
     };
     reduceMotion.addEventListener?.("change", updateReelVideos);
+    const unlockAudio = (event) => {
+      if (event.target instanceof Element && event.target.closest("[data-reelsnd]")) return;
+      if (reelVisible && soundWanted) updateReelVideos();
+    };
+    addEventListener("pointerdown", unlockAudio, { capture: true, passive: true });
+    addEventListener("keydown", unlockAudio, { capture: true });
     addEventListener("resize", layoutReels, { passive: true });
     layoutReels();
+    syncReelVisibility();
     updateProgress();
   }
 
@@ -345,6 +400,7 @@
         span.style.opacity = String(clamp((softHead - index) / 3, .2, 1));
       });
     });
+    syncReelVisibility();
   };
 
   const queueTick = () => {
