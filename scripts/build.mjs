@@ -56,8 +56,8 @@ function documentHead({ title, description, canonical, ogImage, level, type = "w
   <meta name="twitter:title" content="${escapeHtml(title)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${imageUrl}">
-  <link rel="icon" type="image/png" href="${prefix}assets/favicon.png">
-  <link rel="apple-touch-icon" href="${prefix}assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="${prefix}assets/favicon.png?v=20260819">
+  <link rel="apple-touch-icon" sizes="180x180" href="${prefix}assets/apple-touch-icon.png?v=20260819">
   <link rel="manifest" href="${prefix}site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
