@@ -161,7 +161,7 @@ function homePage() {
   <p class="eyebrow">SleekDee / brand, graphic designer</p>
   <h1 id="hero-title" aria-label="I build brands that look sharp and grow online."><span data-hero-line="I build brands">I build brands</span><span data-hero-line="that look sharp" data-hero-accent="sharp">that look <em>sharp</em></span><span data-hero-line="and grow online.">and grow online.</span></h1>
   <p class="hero-copy" data-blurline>I'm Tirth Mody, the brand and graphic designer and cinematographer behind SleekDee. Identities, feeds, packaging and photographs that pull their weight: work that looks good and sells harder.</p>
-  <div class="hero-tags"><span class="desktop-label">brand, graphic designer</span><span class="mobile-label">brand, graphic designer</span><span>cinematographer</span></div>
+  <div class="hero-tags"><span>brand design</span><span>graphic designer</span><span>cinematographer</span><span>social media marketing</span></div>
   <div class="hero-actions"><a class="button button-accent" href="#contact">Let's work together</a><a class="text-link" href="#work">See the work ${icons.arrow}</a></div>
 </div></section>
 <section class="client-strip deep" aria-label="Brands I have grown"><div class="content"><p>Brands I've grown</p></div><div class="marquee" aria-label="Marshall, Interior Goods Direct, Sapphire, Ernest Jones and Pringles">${marquee}</div></section>
